@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow'
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+shadowJar {
+    archiveBaseName.set('fat-jar')
+    archiveClassifier.set('')
+    manifest { attributes 'Main-Class': 'ru.otus.hello.HelloOtus' }
+}
+
+group 'ru.otus'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava'
+}
+
+tasks.build.dependsOn tasks.shadowJar
